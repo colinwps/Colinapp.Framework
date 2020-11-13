@@ -14,8 +14,17 @@ namespace Colinapp.Data.EF
     public class SqlServerDbContext:DbContext,IDisposable
     {
         /// <summary>
-        /// 
+        /// 数据库连接字符串
         /// </summary>
         private string ConnectionString { get; set; }
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="connectionString">数据库连接字符串</param>
+        public SqlServerDbContext(string connectionString)
+        {
+            this.ConnectionString = connectionString;
+        }
+
     }
 }
