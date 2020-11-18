@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Colinapp.Util", "Colinapp.Util\Colinapp.Util.csproj", "{C1A49172-BD2D-4CF0-8E32-04B159AF267B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Colinapp.Util", "Colinapp.Util\Colinapp.Util.csproj", "{C1A49172-BD2D-4CF0-8E32-04B159AF267B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 Framework 基础模块", "01 Framework 基础模块", "{15F646B7-CA18-4E33-9B73-82B637A7161A}"
 EndProject
@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 DataAccess 数据库模�
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 Cache 数据缓存", "02 Cache 数据缓存", "{6E441091-3DC0-4C8B-881D-DFB8052C1903}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Colinapp.Cache", "Colinapp.Cache\Colinapp.Cache.csproj", "{F91142F6-738D-4008-A60A-C9C5331EF768}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Colinapp.Cache", "Colinapp.Cache\Colinapp.Cache.csproj", "{F91142F6-738D-4008-A60A-C9C5331EF768}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 ApplicationModule 应用模块", "03 ApplicationModule 应用模块", "{7DC19C87-BD88-4CCB-80A0-4BBE9CFF9E8A}"
 EndProject
@@ -25,7 +25,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "06 NunitTest 单元测试",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 DataEF 数据库访问框架", "01 DataEF 数据库访问框架", "{C99EAAEA-35F6-4721-9A2D-D8F575A4E21C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Colinapp.Data.EF", "Colinapp.Data.EF\Colinapp.Data.EF.csproj", "{226F97F2-86BB-4A9E-8511-96E26C997764}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Colinapp.Data.EF", "Colinapp.Data.EF\Colinapp.Data.EF.csproj", "{226F97F2-86BB-4A9E-8511-96E26C997764}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "07 Doc 文档", "07 Doc 文档", "{A44BBC5C-C497-48AA-9E98-1EEF5B7AFE28}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

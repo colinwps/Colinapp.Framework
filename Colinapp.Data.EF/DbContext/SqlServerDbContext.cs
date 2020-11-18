@@ -25,6 +25,21 @@ namespace Colinapp.Data.EF
         {
             this.ConnectionString = connectionString;
         }
+        /// <summary>
+        /// 配置重写
+        /// </summary>
+        /// <param name="optionsBuilder"></param>
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            //base.OnConfiguring(optionsBuilder);
+            optionsBuilder.UseSqlServer(this.ConnectionString, p => p.CommandTimeout(5000)); //基础配置
+            optionsBuilder.AddInterceptors(new DbCommandCustomInterceptor());  //sql拦截器
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
 
     }
 }
