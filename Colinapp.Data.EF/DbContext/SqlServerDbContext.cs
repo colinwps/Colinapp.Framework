@@ -10,7 +10,7 @@ using System.Reflection;
 namespace Colinapp.Data.EF
 {
     /// <summary>
-    /// sql数据库连接类
+    /// sqlserver数据库连接类
     /// </summary>
     public class SqlServerDbContext:DbContext,IDisposable
     {
