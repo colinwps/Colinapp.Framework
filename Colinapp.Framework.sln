@@ -27,13 +27,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 DataEF 数据库访问�
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Colinapp.Data.EF", "Colinapp.Data.EF\Colinapp.Data.EF.csproj", "{226F97F2-86BB-4A9E-8511-96E26C997764}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "07 Doc 文档", "07 Doc 文档", "{A44BBC5C-C497-48AA-9E98-1EEF5B7AFE28}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "07 Console 控制台程序", "07 Console 控制台程序", "{A44BBC5C-C497-48AA-9E98-1EEF5B7AFE28}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 数据库实体映射", "01 数据库实体映射", "{9D6B7671-B5A4-4CDA-BCA6-9170DD09182E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 数据库实体", "02 数据库实体", "{45900A17-0208-467C-9E86-8D4066AAAE17}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColinApp.Application.Mapping", "ColinApp.Application.Mapping\ColinApp.Application.Mapping.csproj", "{0D416424-A741-469F-955F-690BAE722FD4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ColinApp.Application.Mapping", "ColinApp.Application.Mapping\ColinApp.Application.Mapping.csproj", "{0D416424-A741-469F-955F-690BAE722FD4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "08 Doc 文档", "08 Doc 文档", "{C8D93117-225B-4C5B-95D2-1343E7F3392A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 Data 基础数据", "02 Data 基础数据", "{DC5722BC-1D00-401A-8C96-3AE987B924EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +75,7 @@ Global
 		{9D6B7671-B5A4-4CDA-BCA6-9170DD09182E} = {7DC19C87-BD88-4CCB-80A0-4BBE9CFF9E8A}
 		{45900A17-0208-467C-9E86-8D4066AAAE17} = {7DC19C87-BD88-4CCB-80A0-4BBE9CFF9E8A}
 		{0D416424-A741-469F-955F-690BAE722FD4} = {9D6B7671-B5A4-4CDA-BCA6-9170DD09182E}
+		{DC5722BC-1D00-401A-8C96-3AE987B924EE} = {CFE22C75-5830-4247-9F30-1BA43CF4814A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7F5EE83C-4451-4911-A324-1A44917823B3}
