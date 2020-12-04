@@ -91,7 +91,34 @@ namespace Colinapp.Data
         /// <param name="entities">实体集</param>
         /// <returns></returns>
         Task<int> Insert<T>(IEnumerable<T> entities) where T : class;
-
+        /// <summary>
+        /// 删除实体数据
+        /// </summary>
+        /// <typeparam name="T">类型</typeparam>
+        /// <param name="entity">实体</param>
+        /// <returns></returns>
+        Task<int> Delete<T>(T entity) where T : class;
+        /// <summary>
+        /// 批量删除实体集
+        /// </summary>
+        /// <typeparam name="T">类型</typeparam>
+        /// <param name="entitirs"></param>
+        /// <returns></returns>
+        Task<int> Delete<T>(IEnumerable<T> entitirs) where T : class;
+        /// <summary>
+        /// 更新实体数据
+        /// </summary>
+        /// <typeparam name="T">类型</typeparam>
+        /// <param name="entity">实体</param>
+        /// <returns></returns>
+        Task<int> Update<T>(T entity) where T : class;
+        /// <summary>
+        /// 批量更新实体数据
+        /// </summary>
+        /// <typeparam name="T">类型</typeparam>
+        /// <param name="entities">实体</param>
+        /// <returns></returns>
+        Task<int> Update<T>(IEnumerable<T> entities) where T : class;
         #endregion
     }
 }
