@@ -120,5 +120,67 @@ namespace Colinapp.Data
         /// <returns></returns>
         Task<int> Update<T>(IEnumerable<T> entities) where T : class;
         #endregion
+
+        #region 对象实体 查询
+        /// <summary>
+        /// 查找一个实体
+        /// </summary>
+        /// <typeparam name="T">类型</typeparam>
+        /// <param name="keyValue">主键</param>
+        /// <returns></returns>
+        Task<T> FindEntity<T>(object keyValue) where T : class;
+        /// <summary>
+        /// 查找一个实体(根据表达式)
+        /// </summary>
+        /// <typeparam name="T">类型</typeparam>
+        /// <param name="condition">表达式</param>
+        /// <returns></returns>
+        Task<T> FindEntity<T>(Expression<Func<T, bool>> condition) where T : class, new();
+        /// <summary>
+        /// 查找一个实体(根据sql)
+        /// </summary>
+        /// <typeparam name="T">类型</typeparam>
+        /// <param name="strSql">sql语句</param>
+        /// <param name="dbParameter">参数</param>
+        /// <returns></returns>
+        Task<T> FindEntity<T>(string strSql, object dbParameter = null) where T : class, new();
+        /// <summary>
+        /// 查询列表(获取所有数据)
+        /// </summary>
+        /// <typeparam name="T">类型</typeparam>
+        /// <returns></returns>
+        Task<IEnumerable<T>> FindList<T>() where T : class, new();
+        /// <summary>
+        /// 查询列表(获取所有数据)
+        /// </summary>
+        /// <typeparam name="T">类型</typeparam>
+        /// <param name="orderby">排序</param>
+        /// <returns></returns>
+        Task<IEnumerable<T>> FindList<T>(Func<T, object> orderby) where T : class, new();
+        /// <summary>
+        /// 查询列表(根据表达式)
+        /// </summary>
+        /// <typeparam name="T">类型</typeparam>
+        /// <param name="condition">表达式</param>
+        /// <returns></returns>
+        Task<IEnumerable<T>> FindList<T>(Expression<Func<T, bool>> condition) where T : class, new();
+        /// <summary>
+        /// 查询列表(根据SQL语句)
+        /// </summary>
+        /// <typeparam name="T">类型</typeparam>
+        /// <param name="strSql">sql语句</param>
+        /// <returns></returns>
+        Task<IEnumerable<T>> FindList<T>(string strSql) where T : class;
+        /// <summary>
+        /// 查询列表
+        /// </summary>
+        /// <typeparam name="T">类型</typeparam>
+        /// <param name="strsql">sql语句</param>
+        /// <param name="dbParameter">参数</param>
+        /// <returns></returns>
+        Task<IEnumerable<T>> FindList<T>(string strsql, object dbParameter) where T : class;
+
+        #endregion
+
     }
 }
