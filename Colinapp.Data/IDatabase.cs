@@ -179,7 +179,107 @@ namespace Colinapp.Data
         /// <param name="dbParameter">参数</param>
         /// <returns></returns>
         Task<IEnumerable<T>> FindList<T>(string strsql, object dbParameter) where T : class;
+        /// <summary>
+        /// 查询列表(分页)
+        /// </summary>
+        /// <typeparam name="T">类型</typeparam>
+        /// <param name="sort">排序字段</param>
+        /// <param name="isAsc">排序类型</param>
+        /// <param name="pageSize">每页数据条数</param>
+        /// <param name="pageIndex">页码</param>
+        /// <returns></returns>
+        Task<(int total, IEnumerable<T> list)> FindList<T>(string sort, bool isAsc, int pageSize, int pageIndex) where T : class, new();
+        /// <summary>
+        /// 查询列表(分页)表达式
+        /// </summary>
+        /// <typeparam name="T">类型</typeparam>
+        /// <param name="condition">表达式</param>
+        /// <param name="sort">排序字段</param>
+        /// <param name="isAsc">排序类型</param>
+        /// <param name="pageSize">每页数据条数</param>
+        /// <param name="pageIndex">页码</param>
+        /// <returns></returns>
+        Task<(int total, IEnumerable<T> list)> FindList<T>(Expression<Func<T, bool>> condition, string sort, bool isAsc, int pageSize, int pageIndex) where T : class, new();
+        /// <summary>
+        /// 查询列表(分页)Sql语句
+        /// </summary>
+        /// <typeparam name="T">类型</typeparam>
+        /// <param name="strSql">sql语句</param>
+        /// <param name="sort">排序字段</param>
+        /// <param name="isAsc">排序类型</param>
+        /// <param name="pageSize">每页数据条数</param>
+        /// <param name="pageIndex">页码</param>
+        /// <returns></returns>
+        Task<(int total, IEnumerable<T>)> FindList<T>(string strSql, string sort, bool isAsc, int pageSize, int pageIndex) where T : class;
+        /// <summary>
+        /// 查询列表(分页)Sql语句 带参数
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="strSql"></param>
+        /// <param name="dbParameter"></param>
+        /// <param name="sort"></param>
+        /// <param name="isAsc"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="pageIndex"></param>
+        /// <returns></returns>
+        Task<(int total, IEnumerable<T>)> FindList<T>(string strSql, object dbParameter, string sort, bool isAsc, int pageSize, int pageIndex) where T : class;
 
+        #endregion
+        #region 数据源查询
+        /// <summary>
+        /// 查询数据
+        /// </summary>
+        /// <param name="strSql">sql语句</param>
+        /// <returns></returns>
+        Task<DataTable> FindTable(string strSql);
+        /// <summary>
+        /// 查询数据
+        /// </summary>
+        /// <param name="strSql">sql语句</param>
+        /// <param name="dbParameter">参数</param>
+        /// <returns></returns>
+        Task<DataTable> FindTable(string strSql,object dbParameter);
+        /// <summary>
+        /// 查询数据
+        /// </summary>
+        /// <param name="strSql">sql语句</param>
+        /// <param name="sort">排序字段</param>
+        /// <param name="isAsc">排序类型</param>
+        /// <param name="pageSize">每页数据条数</param>
+        /// <param name="pageIndex">页码</param>
+        /// <returns></returns>
+        Task<(int total, DataTable)> FindTable(string strSql, string sort, bool isAsc, int pageSize, int pageIndex);
+        /// <summary>
+        /// 查询数据
+        /// </summary>
+        /// <param name="strSql">sql语句</param>
+        /// <param name="dbParameter">参数</param>
+        /// <param name="sort">排序字段</param>
+        /// <param name="isAsc">排序类型</param>
+        /// <param name="pageSize">每页数据条数</param>
+        /// <param name="pageIndex">页码</param>
+        /// <returns></returns>
+        Task<(int total, DataTable)> FindTable(string strSql, object dbParameter, string sort,bool isAsc,int pageSize,int pageIndex);
+        /// <summary>
+        /// 查询对象
+        /// </summary>
+        /// <param name="strSql">sql语句</param>
+        /// <returns></returns>
+        Task<object> FindObject(string strSql);
+        /// <summary>
+        /// 查询对象
+        /// </summary>
+        /// <param name="strSql">sql语句</param>
+        /// <param name="dbParameter">参数</param>
+        /// <returns></returns>
+        Task<object> FindObject(string strSql, object dbParameter);
+        /// <summary>
+        /// 查询对象
+        /// </summary>
+        /// <typeparam name="T">类型</typeparam>
+        /// <param name="strSql">sql语句</param>
+        /// <returns></returns>
+        Task<T> FindObject<T>(string strSql) where T : class;
         #endregion
 
     }
