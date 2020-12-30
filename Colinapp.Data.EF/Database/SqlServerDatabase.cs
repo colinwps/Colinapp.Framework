@@ -10,7 +10,7 @@ using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore.Storage;
 
 
-namespace Colinapp.Data.EF.Database
+namespace Colinapp.Data.EF
 {
     /// <summary>
     /// 程序名: Sqlserver 数据库读写实现
@@ -24,6 +24,8 @@ namespace Colinapp.Data.EF.Database
     /// </summary>
     public class SqlServerDatabase : IDatabase
     {
+
+        #region 构造函数
         /// <summary>
         /// 构造函数
         /// </summary>
@@ -32,6 +34,10 @@ namespace Colinapp.Data.EF.Database
         {
             this.dbContext = new SqlServerDbContext(connString);
         }
+        #endregion
+
+        #region 属性
+
         /// <summary>
         /// 当前数据访问上下文对象
         /// </summary>
@@ -40,6 +46,10 @@ namespace Colinapp.Data.EF.Database
         /// 事务对象
         /// </summary>
         public IDbContextTransaction dbContextTransaction { get; set; }
+
+        #endregion
+
+        #region 事务
         /// <summary>
         /// 事务开始
         /// </summary>
@@ -54,16 +64,149 @@ namespace Colinapp.Data.EF.Database
             this.dbContextTransaction = await this.dbContext.Database.BeginTransactionAsync();
             return this;
         }
-
-        public Task Close()
+        /// <summary>
+        /// 关闭
+        /// </summary>
+        /// <returns></returns>
+        public async Task Close()
         {
-            throw new NotImplementedException();
+            await this.dbContext.DisposeAsync();
+        }
+        /// <summary>
+        /// 事务提交
+        /// </summary>
+        /// <returns></returns>
+        public async Task<int> CommitTrans()
+        {
+            try
+            {
+                //设置默认值 //代写
+                int returnValue = await this.dbContext.SaveChangesAsync();
+                if (this.dbContextTransaction != null)
+                {
+                    await this.dbContextTransaction.CommitAsync();
+                    await this.Close();
+                }
+                else
+                {
+                    await this.Close();
+                }
+                return returnValue;
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                if (this.dbContextTransaction == null)
+                {
+                    await this.Close();
+                }
+            }
+        }
+        /// <summary>
+        /// 回滚当前操作
+        /// </summary>
+        /// <returns></returns>
+        public async Task RollbackTrans()
+        {
+            await this.dbContextTransaction.RollbackAsync();
+            await this.dbContextTransaction.DisposeAsync();
+            await this.Close();
         }
 
-        public Task<int> CommitTrans()
+        #endregion
+
+        #region 直接执行 SQL 语句
+        /// <summary>
+        /// 执行SQL语句
+        /// </summary>
+        /// <param name="strSql">sql语句</param>
+        /// <returns></returns>
+        public async Task<int> ExecuteBySql(string strSql)
         {
-            throw new NotImplementedException();
+            if (this.dbContextTransaction == null)
+            {
+                return await this.dbContext.Database.ExecuteSqlRawAsync(strSql);
+            }
+            else
+            {
+                await this.dbContext.Database.ExecuteSqlRawAsync(strSql);
+                return this.dbContextTransaction == null ? await this.CommitTrans() : 0; 
+            }
         }
+        /// <summary>
+        /// 执行SQL语句
+        /// </summary>
+        /// <param name="strSql">sql语句</param>
+        /// <param name="dbParameter">参数</param>
+        /// <returns></returns>
+        public async Task<int> ExecuteBySql(string strSql, params DbParameter[] dbParameter)
+        {
+            if (this.dbContextTransaction == null)
+            {
+                return await this.dbContext.Database.ExecuteSqlRawAsync(strSql, dbParameter);
+            }
+            else
+            {
+                await this.dbContext.Database.ExecuteSqlRawAsync(strSql, dbParameter);
+                return this.dbContextTransaction == null ? await this.CommitTrans() : 0;
+            }
+        }
+
+        /// <summary>
+        /// 执行存储过程
+        /// </summary>
+        /// <param name="procName">存储过程名</param>
+        /// <returns></returns>
+        public async Task<int> ExecuteByProc(string procName)
+        {
+            if (this.dbContextTransaction == null)
+            {
+                return await this.dbContext.Database.ExecuteSqlRawAsync(DbContextExtension.BuilderProc(procName));
+            }
+            else
+            {
+                await this.dbContext.Database.ExecuteSqlRawAsync(DbContextExtension.BuilderProc(procName));
+                if (this.dbContextTransaction == null)
+                {
+                    return await this.CommitTrans();
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+        }
+        /// <summary>
+        /// 执行过程(带参数)
+        /// </summary>
+        /// <param name="procName">存储过程名</param>
+        /// <param name="dbParameter">参数</param>
+        /// <returns></returns>
+        public async Task<int> ExecuteByProc(string procName, DbParameter[] dbParameter)
+        {
+            if (this.dbContextTransaction == null)
+            {
+                return await this.dbContext.Database.ExecuteSqlRawAsync(DbContextExtension.BuilderProc(procName, dbParameter));
+            }
+            else
+            {
+                await this.dbContext.Database.ExecuteSqlRawAsync(DbContextExtension.BuilderProc(procName, dbParameter));
+                if (this.dbContextTransaction == null)
+                {
+                    return await this.CommitTrans();
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+        }
+
+        #endregion
+
 
         public Task<int> Delete<T>(T entity) where T : class
         {
@@ -75,25 +218,11 @@ namespace Colinapp.Data.EF.Database
             throw new NotImplementedException();
         }
 
-        public Task<int> ExecuteByProc(string procName)
-        {
-            throw new NotImplementedException();
-        }
+        
 
-        public Task<int> ExecuteByProc(string procName, DbParameter[] dbParameter)
-        {
-            throw new NotImplementedException();
-        }
+        
 
-        public Task<int> ExecuteBySql(string strSql)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<int> ExecuteBySql(string strSql, params DbParameter[] dbParameter)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         public Task<T> FindEntity<T>(object keyValue) where T : class
         {
@@ -200,10 +329,7 @@ namespace Colinapp.Data.EF.Database
             throw new NotImplementedException();
         }
 
-        public Task RollbackTrans()
-        {
-            throw new NotImplementedException();
-        }
+        
 
         public Task<int> Update<T>(T entity) where T : class
         {
