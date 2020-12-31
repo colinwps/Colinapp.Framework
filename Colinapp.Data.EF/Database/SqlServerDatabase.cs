@@ -207,22 +207,84 @@ namespace Colinapp.Data.EF
 
         #endregion
 
-
-        public Task<int> Delete<T>(T entity) where T : class
+        #region 实体 添加 修改 删除
+        /// <summary>
+        /// 添加实体
+        /// </summary>
+        /// <typeparam name="T">实体类型</typeparam>
+        /// <param name="entity">实体</param>
+        /// <returns></returns>
+        public async Task<int> Insert<T>(T entity) where T : class
+        {
+            this.dbContext.Entry<T>(entity).State = EntityState.Added;
+            return this.dbContextTransaction == null ? await this.CommitTrans() : 0;
+        }
+        /// <summary>
+        /// 批量插入实体
+        /// </summary>
+        /// <typeparam name="T">实体类型</typeparam>
+        /// <param name="entities">实体</param>
+        /// <returns></returns>
+        public async Task<int> Insert<T>(IEnumerable<T> entities) where T : class
+        {
+            foreach (var entity in entities)
+            {
+                this.dbContext.Entry<T>(entity).State = EntityState.Added;
+            }
+            return this.dbContextTransaction == null ? await this.CommitTrans() : 0;
+        }
+        /// <summary>
+        /// 删除实体
+        /// </summary>
+        /// <typeparam name="T">实体类型</typeparam>
+        /// <param name="entity">实体</param>
+        /// <returns></returns>
+        public async Task<int> Delete<T>(T entity) where T : class
+        {
+            this.dbContext.Set<T>().Attach(entity);
+            this.dbContext.Set<T>().Remove(entity);
+            return this.dbContextTransaction == null ? await this.CommitTrans() : 0;
+        }
+        /// <summary>
+        /// 批量删除实体
+        /// </summary>
+        /// <typeparam name="T">实体类型</typeparam>
+        /// <param name="entitirs">实体集</param>
+        /// <returns></returns>
+        public async Task<int> Delete<T>(IEnumerable<T> entitirs) where T : class
+        {
+            foreach (var entity in entitirs)
+            {
+                this.dbContext.Set<T>().Attach(entity);
+                this.dbContext.Set<T>().Remove(entity);
+            }
+            return this.dbContextTransaction == null ? await this.CommitTrans() : 0;
+        }
+        /// <summary>
+        /// 更新实体
+        /// </summary>
+        /// <typeparam name="T">实体类型</typeparam>
+        /// <param name="entity">实体</param>
+        /// <returns></returns>
+        public  Task<int> Update<T>(T entity) where T : class
         {
             throw new NotImplementedException();
         }
 
-        public Task<int> Delete<T>(IEnumerable<T> entitirs) where T : class
+        public Task<int> Update<T>(IEnumerable<T> entities) where T : class
         {
             throw new NotImplementedException();
         }
+        #endregion
 
-        
 
-        
 
-        
+
+
+
+
+
+
 
         public Task<T> FindEntity<T>(object keyValue) where T : class
         {
@@ -319,26 +381,10 @@ namespace Colinapp.Data.EF
             throw new NotImplementedException();
         }
 
-        public Task<int> Insert<T>(T entity) where T : class
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<int> Insert<T>(IEnumerable<T> entities) where T : class
-        {
-            throw new NotImplementedException();
-        }
+       
 
         
 
-        public Task<int> Update<T>(T entity) where T : class
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<int> Update<T>(IEnumerable<T> entities) where T : class
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }
