@@ -47,11 +47,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 Repository 数据仓库"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Colinapp.Data.Repository", "Colinapp.Data.Repository\Colinapp.Data.Repository.csproj", "{7AF516A9-539A-46F3-A5E3-B643DB7DD266}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Colinapp.Cache.Base", "Colinapp.Cache.Base\Colinapp.Cache.Base.csproj", "{2D251F04-181C-4C61-86E9-4D5B70986D6B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Colinapp.Cache.Base", "Colinapp.Cache.Base\Colinapp.Cache.Base.csproj", "{2D251F04-181C-4C61-86E9-4D5B70986D6B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Colinapp.Cache.Factory", "Colinapp.Cache.Factory\Colinapp.Cache.Factory.csproj", "{0F229C5A-6B63-4D7B-9D16-6D3C27E74F7B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Colinapp.Cache.Factory", "Colinapp.Cache.Factory\Colinapp.Cache.Factory.csproj", "{0F229C5A-6B63-4D7B-9D16-6D3C27E74F7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Colinapp.Cache.Redis", "Colinapp.Cache.Redis\Colinapp.Cache.Redis.csproj", "{644D30C3-0C86-4BC5-8D88-E5ED1AC2BB58}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Colinapp.Cache.Redis", "Colinapp.Cache.Redis\Colinapp.Cache.Redis.csproj", "{644D30C3-0C86-4BC5-8D88-E5ED1AC2BB58}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Colinapp.MyConsoleApp", "Colinapp.MyConsoleApp\Colinapp.MyConsoleApp.csproj", "{9E52C1D2-67E6-458B-BE2A-529B6AC41EB1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -99,6 +101,10 @@ Global
 		{644D30C3-0C86-4BC5-8D88-E5ED1AC2BB58}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{644D30C3-0C86-4BC5-8D88-E5ED1AC2BB58}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{644D30C3-0C86-4BC5-8D88-E5ED1AC2BB58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E52C1D2-67E6-458B-BE2A-529B6AC41EB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E52C1D2-67E6-458B-BE2A-529B6AC41EB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E52C1D2-67E6-458B-BE2A-529B6AC41EB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E52C1D2-67E6-458B-BE2A-529B6AC41EB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -121,6 +127,7 @@ Global
 		{2D251F04-181C-4C61-86E9-4D5B70986D6B} = {6E441091-3DC0-4C8B-881D-DFB8052C1903}
 		{0F229C5A-6B63-4D7B-9D16-6D3C27E74F7B} = {6E441091-3DC0-4C8B-881D-DFB8052C1903}
 		{644D30C3-0C86-4BC5-8D88-E5ED1AC2BB58} = {6E441091-3DC0-4C8B-881D-DFB8052C1903}
+		{9E52C1D2-67E6-458B-BE2A-529B6AC41EB1} = {A44BBC5C-C497-48AA-9E98-1EEF5B7AFE28}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7F5EE83C-4451-4911-A324-1A44917823B3}

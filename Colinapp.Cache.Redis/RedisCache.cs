@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Microsoft.Extensions.Caching.StackExchangeRedis;
+using StackExchange.Redis;
+
 
 namespace Colinapp.Cache.Redis
 {
@@ -12,7 +13,9 @@ namespace Colinapp.Cache.Redis
     {
         public void test()
         {
-            
+            ConnectionMultiplexer redis = ConnectionMultiplexer.Connect("192.168.11.230:6379");
+            IDatabase db = redis.GetDatabase(2);
+            db.StringSet("kk", "123456");
         }
     }
 }
