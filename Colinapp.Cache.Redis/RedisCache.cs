@@ -15,7 +15,7 @@ namespace Colinapp.Cache.Redis
         {
             ConnectionMultiplexer redis = ConnectionMultiplexer.Connect("192.168.11.230:6379");
             IDatabase db = redis.GetDatabase(2);
-            db.StringSet("kk", "123456");
+            db.StringSet("kk", "1234567");
         }
     }
 }
